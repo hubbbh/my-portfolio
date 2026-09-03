@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg: #F6F3EE;
+  --color-surface: #EEE7DD;
+  --color-border: #D7CEC3;
+  --color-text-1: #171616;
+  --color-text-2: #5E5A56;
+  --color-text-3: #9B9590;
+
+  --color-ice-blue: #8FB7E8;
+  --color-peach: #F2B2A0;
+  --color-warm-yellow: #F4C542;
+  --color-forest: #314C3A;
+  --color-coral: #E86A5B;
+  --color-electric: #2D66F5;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-1);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: var(--color-warm-yellow);
+  color: var(--color-text-1);
+}
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    color: var(--color-text-1);
+  }
+
+  p {
+    color: var(--color-text-2);
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .border-subtle {
+    border-color: var(--color-border);
+  }
+
+  .container-site {
+    @apply max-w-7xl mx-auto px-6 lg:px-10;
+  }
+
+  .section-padding {
+    @apply py-24 lg:py-32;
+  }
+
+  /* Small caps label */
+  .label-sm {
+    @apply text-xs font-medium tracking-widest uppercase text-text-3;
+  }
+
+  /* Dot grid texture */
+  .dot-grid {
+    background-image: radial-gradient(circle, var(--color-border) 1.5px, transparent 1.5px);
+    background-size: 18px 18px;
+  }
+
+  /* Four-point star decoration */
+  .star-mark::before {
+    content: '✦';
+    color: var(--color-warm-yellow);
+    font-size: 0.75rem;
+    margin-right: 0.4em;
+  }
+
+  /* Card frame — 8px corners */
+  .card-frame {
+    @apply overflow-hidden rounded-[8px];
+  }
+
+  /* Accent underline for section headings */
+  .heading-accent {
+    @apply relative pb-3;
+  }
+
+  .heading-accent::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 2rem;
+    height: 2px;
+    background-color: var(--color-warm-yellow);
+  }
+}

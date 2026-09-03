@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>秦若楠 · 简历</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+    :root {
+      --bg:       #F6F3EE;
+      --surface:  #EDE8E1;
+      --border:   #D7CEC3;
+      --text-1:   #171616;
+      --text-2:   #5E5A56;
+      --text-3:   #9B9590;
+      --yellow:   #F4C542;
+      --forest:   #314C3A;
+      --left-w:   68mm;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      background: #B8B2AB;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* ── A4 shell ── */
+    .page {
+      width: 210mm;
+      height: 297mm;
+      overflow: hidden;
+      background: var(--bg);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: var(--left-w) 1fr;
+      font-family: 'Inter', 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+      color: var(--text-1);
+    }
+
+    /* ════════════════════════════
+       LEFT COLUMN
+    ════════════════════════════ */
+    .left {
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      height: 297mm;
+    }
+
+    /* ── Photo ── */
+    .photo-wrap {
+      flex-shrink: 0;
+      width: 100%;
+      height: 52mm;
+      background: #D9D3CB;
+      position: relative;
+      overflow: hidden;
+    }
+    /*
+      替换照片：将 <div class="photo-wrap"> 内的占位内容全部删除，
+      改为 <img src="your-photo.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center top;" />
+    */
+    .photo-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2mm;
+    }
+    .photo-placeholder .ph-icon {
+      width: 14mm;
+      height: 14mm;
+      border-radius: 50%;
+      border: 1.5px dashed #A09890;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .photo-placeholder .ph-icon svg { opacity: 0.5; }
+    .photo-placeholder .ph-text {
+      font-size: 6pt;
+      color: #A09890;
+      letter-spacing: 0.06em;
+      text-align: center;
+      line-height: 1.5;
+    }
+    /* 照片底部细线 */
+    .photo-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--yellow) 32px, transparent 32px);
+    }
+
+    /* ── Left inner ── */
+    .left-inner {
+      flex: 1;
+      padding: 6mm 7mm 6mm 8mm;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      overflow: hidden;
+    }
+
+    /* Section block */
+    .l-sec { margin-bottom: 5.5mm; }
+    .l-sec:last-child { margin-bottom: 0; }
+
+    .l-label {
+      font-size: 5.5pt;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 2.5mm;
+      padding-bottom: 1.5mm;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Contact */
+    .contact-list { list-style: none; display: flex; flex-direction: column; gap: 1.8mm; }
+    .contact-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 2.5mm;
+      font-size: 7pt;
+      color: var(--text-2);
+      line-height: 1.45;
+    }
+    .c-icon {
+      width: 3mm;
+      flex-shrink: 0;
+      color: var(--text-3);
+      font-size: 6.5pt;
+      margin-top: 0.5px;
+      text-align: center;
+    }
+    .c-link { color: var(--text-3); font-size: 6.5pt; display: block; margin-top: 0.5mm; }
+
+    /* Education */
+    .edu-block { display: flex; flex-direction: column; gap: 1mm; }
+    .edu-block .edu-school { font-size: 7.5pt; font-weight: 600; color: var(--text-1); }
+    .edu-block .edu-detail { font-size: 6.5pt; color: var(--text-2); line-height: 1.5; }
+
+    /* Skills – grouped */
+    .skill-groups { display: flex; flex-direction: column; gap: 3mm; }
+    .skill-group-label {
+      font-size: 5.5pt;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--text-3);
+      text-transform: uppercase;
+      margin-bottom: 1.2mm;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 1.2mm; }
+    .skill-tag {
+      font-size: 6.5pt;
+      color: var(--text-2);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 0.6mm 2mm;
+      line-height: 1.3;
+      white-space: nowrap;
+    }
+
+    /* Awards */
+    .award-list { display: flex; flex-direction: column; gap: 2mm; }
+    .award-item {
+      font-size: 6.5pt;
+      color: var(--text-2);
+      padding-left: 3.5mm;
+      position: relative;
+      line-height: 1.5;
+    }
+    .award-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 4px;
+      width: 3.5px;
+      height: 3.5px;
+      background: var(--yellow);
+      border-radius: 50%;
+    }
+
+    /* ════════════════════════════
+       RIGHT COLUMN
+    ════════════════════════════ */
+    .right {
+      padding: 9mm 10mm 8mm 9mm;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      height: 297mm;
+      overflow: hidden;
+    }
+
+    /* Name header */
+    .name-header {
+      flex-shrink: 0;
+      padding-bottom: 5mm;
+      margin-bottom: 5mm;
+      border-bottom: 1px solid var(--border);
+    }
+    .name-header h1 {
+      font-size: 22pt;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      color: var(--text-1);
+    }
+    .name-header .role-line {
+      margin-top: 2.5mm;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+    }
+    .role-tag {
+      font-size: 7pt;
+      color: var(--text-2);
+      padding: 0;
+    }
+    .role-tag + .role-tag::before {
+      content: ' · ';
+      color: var(--yellow);
+      font-weight: 700;
+    }
+
+    /* Right section label */
+    .r-label {
+      font-size: 5.5pt;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 2.5mm;
+      display: flex;
+      align-items: center;
+      gap: 2mm;
+    }
+    .r-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* Right section wrapper */
+    .r-sec { margin-bottom: 5mm; flex-shrink: 0; }
+    .r-sec:last-child { margin-bottom: 0; }
+
+    /* Summary */
+    .summary-text {
+      font-size: 7.5pt;
+      color: var(--text-2);
+      line-height: 1.7;
+    }
+
+    /* Capabilities — 2×2 grid */
+    .cap-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3mm 6mm;
+    }
+    .cap-col h4 {
+      font-size: 7pt;
+      font-weight: 600;
+      color: var(--forest);
+      margin-bottom: 1.5mm;
+      padding-bottom: 1mm;
+      border-bottom: 1.5px solid var(--yellow);
+      display: inline-block;
+    }
+    .cap-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8mm;
+    }
+    .cap-col li {
+      font-size: 6.5pt;
+      color: var(--text-2);
+      padding-left: 3mm;
+      position: relative;
+      line-height: 1.5;
+    }
+    .cap-col li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: var(--text-3);
+    }
+
+    /* Projects */
+    .proj-list { display: flex; flex-direction: column; gap: 4mm; }
+    .proj-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 1.2mm;
+    }
+    .proj-header h3 {
+      font-size: 8pt;
+      font-weight: 600;
+      color: var(--text-1);
+    }
+    .proj-meta {
+      font-size: 6pt;
+      color: var(--text-3);
+      white-space: nowrap;
+      margin-left: 3mm;
+      flex-shrink: 0;
+    }
+    .proj-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8mm;
+    }
+    .proj-bullets li {
+      font-size: 7pt;
+      color: var(--text-2);
+      padding-left: 3.5mm;
+      position: relative;
+      line-height: 1.55;
+    }
+    .proj-bullets li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--text-3);
+    }
+
+    /* ── Print ── */
+    @media print {
+      html, body { background: white; }
+      .page { margin: 0; box-shadow: none; }
+    }
+    @page { size: A4 portrait; margin: 0; }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══ LEFT COLUMN ══ -->
+  <aside class="left">
+
+    <div class="photo-wrap">
+    <img src="your-photo.jpg"
+         style="width:70%; max-width:190px; height:auto; object-fit:cover; object-position:center top; display:block; margin:0 auto; border-radius:4px;" />
+ </div>
+
+    <div class="left-inner">
+
+      <!-- Contact -->
+      <div class="l-sec">
+        <div class="l-label">联系方式</div>
+        <ul class="contact-list">
+          <li>
+            <span class="c-icon">☎</span>
+            <span>13110110702</span>
+          </li>
+          <li>
+            <span class="c-icon">@</span>
+            <span>hrrhzz@qq.com</span>
+          </li>
+          <li>
+            <span class="c-icon">⌘</span>
+            <span>
+              个人作品集网站
+              <span class="c-link">[ 作品集链接预留 ]</span>
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Education -->
+      <div class="l-sec">
+        <div class="l-label">教育背景</div>
+        <div class="edu-block">
+          <div class="edu-school">四川美术学院</div>
+          <div class="edu-detail">公共艺术专业 · 本科在读</div>
+          <div class="edu-detail">2027 届毕业</div>
+        </div>
+      </div>
+
+      <!-- Skills – grouped -->
+      <div class="l-sec">
+        <div class="l-label">工具 &amp; 技能</div>
+        <div class="skill-groups">
+          <div>
+            <div class="skill-group-label">AIGC · 内容生成</div>
+            <div class="skill-tags">
+              <span class="skill-tag">ComfyUI</span>
+              <span class="skill-tag">DeepSeek</span>
+              <span class="skill-tag">GPT</span>
+              <span class="skill-tag">Claude</span>
+            </div>
+          </div>
+          <div>
+            <div class="skill-group-label">视听 · 设计</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Blender</span>
+              <span class="skill-tag">After Effects</span>
+              <span class="skill-tag">Photoshop</span>
+              <span class="skill-tag">剪映</span>
+              <span class="skill-tag">Suno</span>
+            </div>
+          </div>
+          <div>
+            <div class="skill-group-label">基础技术</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">PyQt5</span>
+              <span class="skill-tag">Git</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Awards -->
+      <div class="l-sec">
+        <div class="l-label">奖项 &amp; 成果</div>
+        <div class="award-list">
+          <div class="award-item">iCAN 大学生创新创业大赛 重庆赛区三等奖</div>
+          <div class="award-item">四川美术学院新文科实践创新比赛 三等奖</div>
+          <div class="award-item">四川美术学院本科生作品年展 优秀奖</div>
+          <div class="award-item">创新创业单项奖学金</div>
+          <div class="award-item">重庆市级大学生创新创业项目负责人</div>
+          <div class="award-item">"魔幻时刻"完成北京互联网法院天平链司法存证</div>
+        </div>
+      </div>
+
+    </div><!-- /left-inner -->
+  </aside>
+
+  <!-- ══ RIGHT COLUMN ══ -->
+  <main class="right">
+
+    <!-- Name & Title -->
+    <div class="name-header">
+      <h1>秦若楠</h1>
+      <div class="role-line">
+        <span class="role-tag">AIGC 内容创作</span>
+        <span class="role-tag">AI 视觉内容设计</span>
+        <span class="role-tag">内容策划</span>
+        <span class="role-tag">四川美术学院</span>
+      </div>
+    </div>
+
+    <!-- Summary -->
+    <div class="r-sec">
+      <div class="r-label">个人简介</div>
+      <p class="summary-text">以内容逻辑与审美判断驱动的 AIGC 创作者，关注 AI 参与下的短内容表达、人机协作流程与可被理解的视觉结果。具备 AIGC 短片创作、视觉工作流搭建、内容实验与基础产品项目推进经验；擅长结合 ComfyUI、Blender、After Effects 完成从内容构思、视觉生成到结果收敛的完整闭环，关注风格统一与内容可传播性。</p>
+    </div>
+
+    <!-- Capabilities -->
+    <div class="r-sec">
+      <div class="r-label">核心能力</div>
+      <div class="cap-grid">
+        <div class="cap-col">
+          <h4>内容创作</h4>
+          <ul>
+            <li>短视频策划与情绪导向表达</li>
+            <li>视觉语言拆解 · 内容节奏控制</li>
+            <li>短时长内容信息密度判断</li>
+          </ul>
+        </div>
+        <div class="cap-col">
+          <h4>AIGC 工作流</h4>
+          <ul>
+            <li>ComfyUI 视觉生成与方向测试</li>
+            <li>LLM 辅助脚本发散与结构整理</li>
+            <li>视觉生成—人工收敛—成片闭环</li>
+          </ul>
+        </div>
+        <div class="cap-col">
+          <h4>视听 &amp; 后期</h4>
+          <ul>
+            <li>Blender 场景搭建 · 空间关系控制</li>
+            <li>AE / PS 合成与动态强化</li>
+            <li>剪映节奏整合 · Suno 音乐辅助</li>
+          </ul>
+        </div>
+        <div class="cap-col">
+          <h4>用户与产品意识</h4>
+          <ul>
+            <li>用户调研 · 问卷设计与分析</li>
+            <li>竞品分析 · 需求提炼</li>
+            <li>跨职能团队协作推进</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Projects -->
+    <div class="r-sec">
+      <div class="r-label">项目经历</div>
+      <div class="proj-list">
+
+        <!-- P1 -->
+        <div>
+          <div class="proj-header">
+            <h3>AIGC 短片系列创作</h3>
+            <span class="proj-meta">独立项目 · 2026</span>
+          </div>
+          <ul class="proj-bullets">
+            <li>围绕统一视觉风格完成 4 支 15 秒短片，探索 AI 辅助下情绪表达、风格控制与内容节奏的关系。</li>
+            <li>独立负责内容构思、ComfyUI 视觉生成、Blender 场景搭建、AE 合成与剪辑全流程。</li>
+            <li>主动放弃高精细结果，转向低模视觉语言，建立"内容意图 → 视觉生成 → 人工控制 → 结果落地"AIGC 工作流。</li>
+          </ul>
+        </div>
+
+        <!-- P2 -->
+        <div>
+          <div class="proj-header">
+            <h3>魔幻时刻 · AI 人像艺术风格转换工具</h3>
+            <span class="proj-meta">项目负责人 · 2025.01–2026.07</span>
+          </div>
+          <ul class="proj-bullets">
+            <li>主导需求调研到产品定义全流程；回收 2000+ 份问卷，结合艺术家访谈与 6 款竞品分析，识别"低门槛生成 + 专业艺术风格"机会点。</li>
+            <li>建立 7 大流派 · 25 种艺术风格元素库，制定在线 / 离线双模式方案，定义产品核心价值与交互流程。</li>
+            <li>协调 7 人跨职能团队完成设计、开发、测试与竞赛路演，项目结题并获多项奖项。</li>
+          </ul>
+        </div>
+
+        <!-- P3 -->
+        <div>
+          <div class="proj-header">
+            <h3>重庆城市映像 · AI 辅助短片</h3>
+            <span class="proj-meta">独立创作 · 2026</span>
+          </div>
+          <ul class="proj-bullets">
+            <li>以重庆城市人文气质为主题，独立完成脚本、AI 素材生成与剪辑成片；发布小红书获 800+ 播放。</li>
+            <li>积累 Prompt 设计、叙事剪辑与平台内容观察经验，形成可复用的短片生产节奏。</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+</div>
+</body>
+</html>
